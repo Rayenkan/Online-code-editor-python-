@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 
-const PyCode = ({ sendDataToParent }) => {
+const PyCode = ({mode ,  sendDataToParent }) => {
+  const [code, setCode] = useState("");
   const handleChange = (e) => {
+    setCode(e.target.value);
     sendDataToParent(e.target.value);
   };
+
+  const handleTab = (event) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      const { behindCurson, aheadCursor } = event.target;
+      const newCode =
+        code.substring(0, behindCurson) +
+        "  " +
+        code.substring(aheadCursor);
+      setCode(newCode);
+      sendDataToParent(newCode);
+    }
+  };
+
   return (
-    <div>
+    <div class={mode}> 
       <textarea
-        className="w-full h-full p-2 border mt-10vh border-gray-300 resize-none focus:outline-none"
-        style={{ width: "95%", height: "80vh", marginTop: "1vh" }}
-        id=""
-        placeholder="print('hello world')"
-        onChange={(e) => handleChange(e)}
+        className="mx-1 w-[98%] h-[30vh] md:min-h-[75vh] resize-none  p-2 border mt-2 border-gray-300 dark:bg-gray-900 dark:text-white  focus:outline-none"
+
+        onChange={handleChange}
+        onKeyDown={handleTab}
       />
     </div>
   );
 };
+
 export default PyCode;

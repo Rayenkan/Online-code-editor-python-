@@ -22,12 +22,15 @@ def execute_Code():
     except Exception as e:
         print("Error:", str(e))
 
+    # Restore original stdout and stderr
     sys.stdout = original_stdout
     sys.stderr = original_stderr
-    captured_output = output.getvalue().strip()
+
+    # Get captured output and error
+    captured_output = output.getvalue()
     captured_error = error_output.getvalue().strip()
 
-
+    # Prepare response
     if captured_output:
         res = {"execution": captured_output}
     else:
