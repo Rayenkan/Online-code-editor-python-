@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import io
 import sys
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder="frontend/build")
 CORS(app)
 
 @app.route('/Output', methods=['GET'])
+@cross_origin()
 def execute_Code():
     code = request.args.get('data', '')
 
@@ -22,15 +23,12 @@ def execute_Code():
     except Exception as e:
         print("Error:", str(e))
 
-    # Restore original stdout and stderr
     sys.stdout = original_stdout
     sys.stderr = original_stderr
 
-    # Get captured output and error
     captured_output = output.getvalue()
     captured_error = error_output.getvalue().strip()
 
-    # Prepare response
     if captured_output:
         res = {"execution": captured_output}
     else:
