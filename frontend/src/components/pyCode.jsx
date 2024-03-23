@@ -23,7 +23,40 @@ const PyCode = ({ mode, sendDataToParent }) => {
         code.substring(selectionEnd);
       setCode(newCode);
       sendDataToParent(newCode);
+    }else if (event.key === '"'){
+      event.preventDefault();
+      const newCode =
+        code.substring(0, selectionStart) +
+        '""' +
+        code.substring(selectionEnd);
+      setCode(newCode);
+      sendDataToParent(newCode);
+    }else if (event.key === '('){
+      event.preventDefault();
+      const newCode =
+        code.substring(0, selectionStart) +
+        '()' +
+        code.substring(selectionEnd);
+      setCode(newCode);
+      sendDataToParent(newCode);
+    }else if (event.key === "'"){
+      event.preventDefault();
+      const newCode =
+        code.substring(0, selectionStart) +
+        "''" +
+        code.substring(selectionEnd);
+      setCode(newCode);
+      sendDataToParent(newCode);
+    }else if (event.key === '{'){
+      event.preventDefault();
+      const newCode =
+        code.substring(0, selectionStart) +
+        '{}' +
+        code.substring(selectionEnd);
+      setCode(newCode);
+      sendDataToParent(newCode);
     }
+    
   };
 
   return (

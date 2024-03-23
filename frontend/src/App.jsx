@@ -18,15 +18,19 @@ function App() {
   };
 
   const handleCode = () => {
-    axios
-      .get("http://127.0.0.1:5000/Output", {
-        params: {
-          data: code,
-        },
-      })
-      .then((res) => {
-        setExecution(res.data.execution);
-      });
+    if (code.includes("import os")) {
+      setExecution("You cant use Os !!!");
+    } else {
+      axios
+        .get("https://dfsdf.pythonanywhere.com/Output", {
+          params: {
+            data: code,
+          },
+        })
+        .then((res) => {
+          setExecution(res.data.execution);
+        });
+    }
   };
 
   return (
