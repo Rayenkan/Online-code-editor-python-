@@ -4,7 +4,7 @@ Discover our Python online compiler – the ultimate tool for Python enthusiasts
 
 ## Demo
 
-Explore the live demo: [Python Online Compiler](https://pythono-online-compiler.netlify.app)
+Explore the live demo: [Python Online Compiler](https://python-online-compiler.netlify.app)
 
 ## Features
 
